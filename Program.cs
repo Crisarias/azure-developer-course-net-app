@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("AzureSqlConnection");
+
+builder.Services.AddDbContext<azure_app_cariasc.Data.AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddApplicationInsightsTelemetry();
 
